@@ -10,6 +10,6 @@ brooklyn.catalog:
       simple.confg: someValue
     services:
     - type: org.apache.brooklyn.entity.webapp.tomcat.TomcatServer
-      id: tomcat
+      id: tomcat-server
       name: Tomcat
       war: https://tomcat.apache.org/tomcat-6.0-doc/appdev/sample/sample.war
