@@ -1,0 +1,34 @@
+brooklyn.catalog:
+  items:
+  - id: tomcat-test-should-pass
+    version: 1.0
+    itemType: template
+    name: Tomcat Test Should Pass
+    license: Apache-2.0
+    item:
+      services:
+      - type: tomcat-server
+        id: tomcat1
+      - type: org.apache.brooklyn.test.framework.TestSensor
+        name: TEST [service.state] IS [running] WITHIN [10m]
+        target: $brooklyn:component("tomcat1")
+        sensor: service.state
+        timeout: 10m
+        assert:
+        - matches: running
+  - id: tomcat-test-should-fail
+    version: 1.0
+    itemType: template
+    name: Tomcat Test Should Fail
+    license: Apache-2.0
+    item:
+      services:
+      - type: tomcat-server
+        id: tomcat2
+      - type: org.apache.brooklyn.test.framework.TestSensor
+        name: TEST [service.state] IS [running] WITHIN [1s]
+        target: $brooklyn:component("tomcat2")
+        sensor: service.state
+        timeout: 1s
+        assert:
+        - matches: running
